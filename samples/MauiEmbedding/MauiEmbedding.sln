@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.2.32210.308
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{D958D411-DCBD-4FBF-828F-FDD7059862EA}"
+	ProjectSection(SolutionItems) = preProject
+		MauiEmbedding\Loader\ModuleLoadContext.cs = MauiEmbedding\Loader\ModuleLoadContext.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platforms", "Platforms", "{1C130CF4-EEF4-44D9-9DEF-C037FE1C221B}"
 EndProject
@@ -76,7 +79,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions Items", "Extensi
 		..\..\src\tfms-ui-maui.props = ..\..\src\tfms-ui-maui.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiEmbedding.MauiControls", "MauiEmbedding.MauiControls\MauiEmbedding.MauiControls.csproj", "{2608CAF0-E84A-4C35-9206-59906AE4E079}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MauiEmbedding.MauiControls", "MauiEmbedding.MauiControls\MauiEmbedding.MauiControls.csproj", "{2608CAF0-E84A-4C35-9206-59906AE4E079}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

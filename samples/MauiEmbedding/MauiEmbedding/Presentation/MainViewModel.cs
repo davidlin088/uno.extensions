@@ -16,8 +16,16 @@ public partial class MainViewModel : ObservableObject
 		Title = "Main";
 		Title += $" - {localizer["ApplicationName"]}";
 		Title += $" - {appInfo?.Value?.Environment}";
+		Login = new AsyncRelayCommand(GoToSecondView);
 	}
 	public string? Title { get; }
+	public ICommand Login { get; }
 
-	
+	private async Task GoToSecondView()
+	{
+		//test-ok await _navigator.NavigateRouteAsync(this, "Second");
+		await _navigator.NavigateRouteAsync(this, "UnoTestModule");
+		//org await _navigator.NavigateViewModelAsync<SecondViewModel>(this, data: new Entity(Name!));
+	}
+
 }

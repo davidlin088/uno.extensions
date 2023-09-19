@@ -1,5 +1,7 @@
 using MauiEmbedding.MauiControls;
+using TreehouseInterface;
 using Uno.Extensions.Maui.Platform;
+using UnoApp.Loader;
 
 namespace MauiEmbedding;
 
@@ -78,13 +80,35 @@ public class App : EmbeddingApplication
 			new ViewMap<MainPage, MainViewModel>()
 		);
 
+		//var dllPath = pickedFile.Path;
+		//test var dllPath = @"C:\DD\@Spike\Uno\Yuan\UnoTestModule\UnoTestModule\bin\Debug\net7.0-windows10.0.19041\UnoTestModule.dll";
+		//test if (File.Exists(dllPath))
+		//test {
+		//test     var loadContext = new ModuleLoadContext(dllPath);
+		//test     var assembly = loadContext.LoadFromAssemblyPath(dllPath);
+		//test     var moduleType = assembly.DefinedTypes.First(i => i.FullName.Contains("UnoTestModule.UnoTestModule"));
+		//test     var instance = assembly.CreateInstance(moduleType.FullName) as ITreehouseModule;
+		//test     instance.OnInitialized(views, routes);
+		//test }
+
 		routes.Register(
 			new RouteMap("", View: views.FindByViewModel<ShellViewModel>(),
 				Nested: new RouteMap[]
 				{
 					new RouteMap("Main", View: views.FindByViewModel<MainViewModel>()),
 				}
-			)
-		);
+			));
+
+
+		var dllPath = @"C:\DD\@Spike\Uno\dd-uno.extensions\samples\UnoTestModule\UnoTestModule\bin\Debug\net7.0\UnoTestModule.dll";
+		if (File.Exists(dllPath))
+		{
+			var loadContext = new ModuleLoadContext(dllPath);
+			var assembly = loadContext.LoadFromAssemblyPath(dllPath);
+			var moduleType = assembly.DefinedTypes.First(i => i.FullName.Contains("UnoTestModule.UnoTestModule"));
+			var instance = assembly.CreateInstance(moduleType.FullName) as ITreehouseModule;
+			instance.OnInitialized(views, routes);
+
+		}
 	}
 }
