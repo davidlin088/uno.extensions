@@ -24,7 +24,7 @@ public partial class MainViewModel : ObservableObject
 	private async Task GoToSecondView()
 	{
 		//test-ok await _navigator.NavigateRouteAsync(this, "Second");
-		await _navigator.NavigateRouteAsync(this, "UnoTestModule");
+		await _navigator.NavigateRouteAsync(this, "UnoTest");
 		//org await _navigator.NavigateViewModelAsync<SecondViewModel>(this, data: new Entity(Name!));
 	}
 
