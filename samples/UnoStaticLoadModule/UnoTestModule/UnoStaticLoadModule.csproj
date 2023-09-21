@@ -51,13 +51,12 @@
     <UpToDateCheckInput Remove="UnoStaticLoadPage.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Uno.Extensions.Navigation\Uno.Extensions.Navigation.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="TreehouseInterface">
-    <HintPath>..\..\TreehouseInterface\TreehouseInterface\bin\Debug\net7.0\TreehouseInterface.dll</HintPath>
-		<Private>false</Private>
-    </Reference>
-    <Reference Include="Uno.Extensions.Navigation">
-      <HintPath>..\..\TreehouseInterface\TreehouseInterface\bin\Debug\net7.0\Uno.Extensions.Navigation.dll</HintPath>
-			<Private>false</Private>
+      <HintPath>..\..\TreehouseInterface\TreehouseInterface\bin\Debug\net7.0\TreehouseInterface.dll</HintPath>
     </Reference>
   </ItemGroup>
+
 </Project>
