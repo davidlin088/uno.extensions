@@ -61,9 +61,9 @@
 		<EmbeddedResource Include="appsettings.*.json" DependentUpon="appsettings.json" />
 		<UpToDateCheckInput Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml" />
 	</ItemGroup>
-
+	
 	<ItemGroup>
-	  <UpToDateCheckInput Remove="Presentation\MainModule.xaml" />
+		<UpToDateCheckInput Remove="Presentation\MainModule.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -82,7 +82,7 @@
 		</ProjectReference>
 		<ProjectReference Include="..\..\..\src\Uno.Extensions.Navigation\Uno.Extensions.Navigation.csproj" />
 		<ProjectReference Include="..\..\..\src\Uno.Extensions.Storage.UI\Uno.Extensions.Storage.WinUI.csproj" />
-		<ProjectReference Include="..\..\UnoTestModule\UnoTestModule\UnoTestModule.csproj" />
+		<ProjectReference Include="..\..\UnoStaticLoadModule\UnoTestModule\UnoStaticLoadModule.csproj" />
 		<ProjectReference Include="..\MauiEmbedding.MauiControls\MauiEmbedding.MauiControls.csproj" />
 	</ItemGroup>
 

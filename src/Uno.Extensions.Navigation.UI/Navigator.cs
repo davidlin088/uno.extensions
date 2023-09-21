@@ -92,7 +92,7 @@ public class Navigator : INavigator, IInstance<IServiceProvider>
 			else
 			{
 				// Invoke the region specific navigation
-				response = await RegionNavigateAsync(request);
+				 response = await RegionNavigateAsync(request);
 			}
 		}
 		RouteUpdater.EndNavigation(this, Region, request, response);
@@ -463,7 +463,7 @@ public class Navigator : INavigator, IInstance<IServiceProvider>
 	/// <inheritdoc />
 	public Task<bool> CanNavigate(Route route)
 	{
-		if (!route.IsInternal)
+		if (!route.IsInternal) //DD
 		{
 			// Only root region should handle dialogs
 			if (Region.Parent is not null)
@@ -476,7 +476,7 @@ public class Navigator : INavigator, IInstance<IServiceProvider>
 			}
 		}
 
-		var routeMap = Resolver.FindByPath(route.Base);
+		var routeMap = Resolver.FindByPath(route.Base); //DD
 
 		var canNav = RegionCanNavigate(route, routeMap);
 		return canNav;

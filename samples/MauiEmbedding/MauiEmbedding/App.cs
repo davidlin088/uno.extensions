@@ -2,7 +2,7 @@ using MauiEmbedding.MauiControls;
 using TreehouseInterface;
 using Uno.Extensions.Maui.Platform;
 using UnoApp.Loader;
-using UnoTestModule;
+using UnoStaticLoadModule;
 
 namespace MauiEmbedding;
 
@@ -78,8 +78,8 @@ public class App : EmbeddingApplication
 	{
 		views.Register(
 			new ViewMap(ViewModel: typeof(ShellViewModel)),
-			new ViewMap<MainModule, MainViewModel>(),
-			new ViewMap<UnoTestPage, UnoTestViewModel>()
+			new ViewMap<MainPage, MainViewModel>(),
+			new ViewMap<UnoStaticLoadPage, UnoStaticLoadViewModel>()
 		);
 
 		//var dllPath = pickedFile.Path;
@@ -98,20 +98,20 @@ public class App : EmbeddingApplication
 				Nested: new RouteMap[]
 				{
 					new RouteMap("Main", View: views.FindByViewModel<MainViewModel>()),
-					new RouteMap("UnoTest", View: views.FindByViewModel<UnoTestViewModel>())
+					new RouteMap("UnoStaticLoad", View: views.FindByViewModel<UnoStaticLoadViewModel>())
 				}
 			));
 
 
-		//ok var dllPath = @"C:\DD\@Spike\Uno\dd-uno.extensions\samples\UnoTestModule\UnoTestModule\bin\Debug\net7.0\UnoTestModule.dll";
-		//ok if (File.Exists(dllPath))
-		//ok {
-		//ok 	var loadContext = new ModuleLoadContext(dllPath);
-		//ok 	var assembly = loadContext.LoadFromAssemblyPath(dllPath);
-		//ok 	var moduleType = assembly.DefinedTypes.First(i => i.FullName.Contains("UnoTestModule.UnoTestModule"));
-		//ok 	var instance = assembly.CreateInstance(moduleType.FullName) as ITreehouseModule;
-		//ok 	instance.OnInitialized(views, routes);
-		//ok 
-		//ok }
+		var dllPath = @"C:\DD\@Spike\Uno\dd-uno.extensions\samples\UnoTestModule\UnoTestModule\bin\Debug\net7.0\UnoTestModule.dll";
+		if (File.Exists(dllPath))
+		{
+			var loadContext = new ModuleLoadContext(dllPath);
+			var assembly = loadContext.LoadFromAssemblyPath(dllPath);
+			var moduleType = assembly.DefinedTypes.First(i => i.FullName.Contains("UnoTestModule.UnoTestModule"));
+			var instance = assembly.CreateInstance(moduleType.FullName) as ITreehouseModule;
+			instance.OnInitialized(views, routes);
+		
+		}
 	}
 }

@@ -55,10 +55,10 @@ public class FrameNavigator : ControlNavigator<Frame>, IStackNavigator
 		}
 
 		// Can only navigate the frame to a page
-		var viewType = routeMap.RenderView;
+		var viewType = routeMap.RenderView;  //DD
 		if (
 			viewType is null ||
-			!viewType.IsSubclassOf(typeof(Page))
+			!viewType.IsSubclassOf(typeof(Page)) //DD
 		)
 		{
 			return false;

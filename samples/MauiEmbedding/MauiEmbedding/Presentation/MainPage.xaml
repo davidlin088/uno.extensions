@@ -1,4 +1,4 @@
-<Page x:Class="MauiEmbedding.Presentation.MainModule"
+<Page x:Class="MauiEmbedding.Presentation.MainPage"
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -17,7 +17,11 @@
 			<RowDefinition />
 		</Grid.RowDefinitions>
 		<utu:NavigationBar Content="{Binding Title}" />
-		<Button Content="Next Page" Command="{Binding Login}"/>
+		<StackPanel>
+			<Button Content="Next Page" Command="{Binding Login}"/>
+			<Button Content="Static Load Page" Command="{Binding StaticLoad}"/>
+		</StackPanel>
+
 		<embed:MauiHost Grid.Row="1"
 						x:Name="mauiContent"
 						VisualElementChanged="OnVisualElementChanged"
