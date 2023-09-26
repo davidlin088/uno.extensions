@@ -102,16 +102,16 @@ public class App : EmbeddingApplication
 				}
 			));
 
-
-		var dllPath = @"C:\DD\@Spike\Uno\dd-uno.extensions\samples\UnoTestModule\UnoTestModule\bin\Debug\net7.0\UnoTestModule.dll";
-		if (File.Exists(dllPath))
-		{
-			var loadContext = new ModuleLoadContext(dllPath);
-			var assembly = loadContext.LoadFromAssemblyPath(dllPath);
-			var moduleType = assembly.DefinedTypes.First(i => i.FullName.Contains("UnoTestModule.UnoTestModule"));
-			var instance = assembly.CreateInstance(moduleType.FullName) as ITreehouseModule;
-			instance.OnInitialized(views, routes);
-		
-		}
+		//dd var dllPath = @"C:\DD\@Spike\Treehouse\Uno.DD\dd.uno.extensions\samples\UnoStaticLoadModule\UnoTestModule\bin\Debug\net7.0-windows10.0.19041\UnoStaticLoadModule.dll";
+		//dynamic-load-test: var dllPath = @"C:\DD\@Spike\Treehouse\Uno.DD\dd.uno.extensions\samples\UnoStaticLoadModule\UnoTestModule\bin\Debug\net7.0\UnoStaticLoadModule.dll";
+		//dynamic-load-test: if (File.Exists(dllPath))
+		//dynamic-load-test: {
+		//dynamic-load-test: 	var loadContext = new ModuleLoadContext(dllPath);
+		//dynamic-load-test: 	var assembly = loadContext.LoadFromAssemblyPath(dllPath);
+		//dynamic-load-test: 	var moduleType = assembly.DefinedTypes.First(i => i.FullName.Contains("UnoStaticLoadModule.UnoTestModule"));
+		//dynamic-load-test: 	var instance = assembly.CreateInstance(moduleType.FullName) as ITreehouseModule;
+		//dynamic-load-test: 	instance.OnInitialized(views, routes);
+		//dynamic-load-test: 
+		//dynamic-load-test: }
 	}
 }
