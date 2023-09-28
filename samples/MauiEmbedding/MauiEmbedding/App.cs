@@ -1,6 +1,5 @@
 using MauiEmbedding.MauiControls;
 using TreehouseInterface;
-using Uno.Extensions.Maui.Platform;
 using UnoApp.Loader;
 using UnoStaticLoadModule;
 
@@ -74,36 +73,22 @@ public class App : EmbeddingApplication
 		//MainWindow.Content = new MainPage();
 	}
 
-	private static void RegisterRoutes(IViewRegistry views, IRouteRegistry routes)
+	private void RegisterRoutes(IViewRegistry views, IRouteRegistry routes)
 	{
 		views.Register(
 			new ViewMap(ViewModel: typeof(ShellViewModel)),
 			new ViewMap<MainPage, MainViewModel>(),
-			new ViewMap<UnoStaticLoadPage, UnoStaticLoadViewModel>()
+			new ViewMap<UnoStaticLoadPage, UnoStaticLoadViewModel>() 
 		);
 
-		//var dllPath = pickedFile.Path;
-		//test var dllPath = @"C:\DD\@Spike\Uno\Yuan\UnoTestModule\UnoTestModule\bin\Debug\net7.0-windows10.0.19041\UnoTestModule.dll";
-		//test if (File.Exists(dllPath))
-		//test {
-		//test     var loadContext = new ModuleLoadContext(dllPath);
-		//test     var assembly = loadContext.LoadFromAssemblyPath(dllPath);
-		//test     var moduleType = assembly.DefinedTypes.First(i => i.FullName.Contains("UnoTestModule.UnoTestModule"));
-		//test     var instance = assembly.CreateInstance(moduleType.FullName) as ITreehouseModule;
-		//test     instance.OnInitialized(views, routes);
-		//test }
-
 		routes.Register(
-			new RouteMap("", View: views.FindByViewModel<ShellViewModel>(),
-				Nested: new RouteMap[]
-				{
-					new RouteMap("Main", View: views.FindByViewModel<MainViewModel>()),
-					new RouteMap("UnoStaticLoad", View: views.FindByViewModel<UnoStaticLoadViewModel>())
-				}
-			));
+			new RouteMap("", View: views.FindByViewModel<ShellViewModel>()),
+			new RouteMap("Main", View: views.FindByViewModel<MainViewModel>()),
+			new RouteMap("UnoStaticLoadModule", View: views.FindByViewModel<UnoStaticLoadViewModel>())
+		);
 
-
-		var dllPath = @"C:\DD\@Spike\Uno\dd-uno.extensions\samples\UnoTestModule\UnoTestModule\bin\Debug\net7.0\UnoTestModule.dll";
+		//Dynamic load mvvm dll -- PLEASE MODIFY THE DLL PATH FOR YOUR TESTING 
+		var dllPath = @"C:\DD\@Spike\Treehouse\Uno.DD\dd.uno.extensions\samples\UnoTestModule\UnoTestModule\bin\Debug\net7.0-windows10.0.19041\UnoTestModule.dll";
 		if (File.Exists(dllPath))
 		{
 			var loadContext = new ModuleLoadContext(dllPath);
@@ -111,7 +96,23 @@ public class App : EmbeddingApplication
 			var moduleType = assembly.DefinedTypes.First(i => i.FullName.Contains("UnoTestModule.UnoTestModule"));
 			var instance = assembly.CreateInstance(moduleType.FullName) as ITreehouseModule;
 			instance.OnInitialized(views, routes);
-		
+
+			//Try to add xmlTypeInfo, but it still fail
+			var originType = assembly.GetType("UnoTestModule.UnoTestModule_XamlTypeInfo.XamlMetaDataProvider");
+			var provider = Activator.CreateInstance(originType!) as Microsoft.UI.Xaml.Markup.IXamlMetadataProvider;
+
+			var appProviderProperty = Current.GetType().GetProperty("_AppProvider", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+			var appProvider = appProviderProperty!.GetValue(this)!;
+			var appProviderProviderProperty = appProvider.GetType().GetProperty("Provider", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+			var appProviderProvider = appProviderProviderProperty!.GetValue(appProvider);
+			var othersProperty = appProviderProvider!.GetType().GetProperty("OtherProviders", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+			var otherProviders = othersProperty!.GetValue(appProviderProvider) as List<Microsoft.UI.Xaml.Markup.IXamlMetadataProvider>;
+
+			var testProperty = otherProviders[0].GetType().GetProperty("Provider", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+			var testProvider0 = testProperty!.GetValue(otherProviders[0]);
+			var testProviderProperty = testProvider0.GetType().GetProperty("OtherProviders", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+			var testOtherProviders = testProviderProperty!.GetValue(testProvider0) as List<Microsoft.UI.Xaml.Markup.IXamlMetadataProvider>;
+			testOtherProviders.Add(provider);
 		}
 	}
 }

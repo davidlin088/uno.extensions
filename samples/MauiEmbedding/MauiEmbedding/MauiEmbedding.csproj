@@ -82,13 +82,15 @@
 		</ProjectReference>
 		<ProjectReference Include="..\..\..\src\Uno.Extensions.Navigation\Uno.Extensions.Navigation.csproj" />
 		<ProjectReference Include="..\..\..\src\Uno.Extensions.Storage.UI\Uno.Extensions.Storage.WinUI.csproj" />
-		<ProjectReference Include="..\..\UnoStaticLoadModule\UnoTestModule\UnoStaticLoadModule.csproj" />
 		<ProjectReference Include="..\MauiEmbedding.MauiControls\MauiEmbedding.MauiControls.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Reference Include="TreehouseInterface">
 	    <HintPath>..\..\TreehouseInterface\TreehouseInterface\bin\Debug\net7.0\TreehouseInterface.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnoStaticLoadModule">
+	    <HintPath>..\..\UnoStaticLoadModule\UnoTestModule\bin\Debug\net7.0-windows10.0.19041\UnoStaticLoadModule.dll</HintPath>
 	  </Reference>
 	</ItemGroup>
 
