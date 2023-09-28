@@ -18,8 +18,8 @@
 		</Grid.RowDefinitions>
 		<utu:NavigationBar Content="{Binding Title}" />
 		<StackPanel>
-			<Button Content="Navigate to a dynamic load assembliy" Command="{Binding DynamicLoad}"/>
-			<Button Content="Navigate to a static link assembliy" Command="{Binding StaticLoad}"/>
+			<Button Content="Navigate to a dynamic load assembly" Command="{Binding DynamicLoad}"/>
+			<Button Content="Navigate to a static link assembly" Command="{Binding StaticLoad}"/>
 		</StackPanel>
 
 		<embed:MauiHost Grid.Row="1"
