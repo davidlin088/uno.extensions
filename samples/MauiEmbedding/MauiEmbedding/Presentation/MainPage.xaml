@@ -14,19 +14,18 @@
 	<Grid Background="{ThemeResource BackgroundBrush}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
 			<RowDefinition />
 		</Grid.RowDefinitions>
 		<utu:NavigationBar Content="{Binding Title}" />
-		<StackPanel>
+		<StackPanel Grid.Row="1">
 			<Button Content="Navigate to a dynamic load assembly" Command="{Binding DynamicLoad}"/>
 			<Button Content="Navigate to a static link assembly" Command="{Binding StaticLoad}"/>
 		</StackPanel>
-
-		<embed:MauiHost Grid.Row="1"
-						x:Name="mauiContent"
-						VisualElementChanged="OnVisualElementChanged"
-						Source="external:SyncfusionDemoPage" />
-
+		<embed:MauiHost Grid.Row="2"
+				x:Name="mauiContent"
+				VisualElementChanged="OnVisualElementChanged"
+				Source="external:SyncfusionDemoPage" />
 	</Grid>
 
 </Page>
